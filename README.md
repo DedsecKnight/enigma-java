@@ -31,8 +31,8 @@
 
 ### How to use
 - Create a new Enigma object with the following syntax (the rotors will be ordered from left to right): 
-    + <code> Enigma enigma = new Enigma(
-            "&lt;Rotor1> &lt;Rotor2> &lt;Rotor3>", <br>
+    + <code> Enigma enigma = new Enigma( <br>
+            "&lt;Rotor1> &lt;Rotor2> &lt;Rotor3>", <br> 
             "&lt;Ring position for Rotor1>&lt;Ring position for Rotor2>&lt;Ring position for Rotor3>", <br>
             "&lt;Initial position for Rotor1>&lt;Initial position for Rotor2>&lt;Initial position for Rotor3>" <br>
         ); </code>
