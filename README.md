@@ -31,10 +31,10 @@
 
 ### How to use
 - Create a new Enigma object with the following syntax (the rotors will be ordered from left to right): 
-    + <code> Enigma enigma = new Enigma(\
-            "&lt;Rotor1> &lt;Rotor2> &lt;Rotor3>",\
-            "&lt;Ring position for Rotor1>&lt;Ring position for Rotor2>&lt;Ring position for Rotor3>",\
-            "&lt;Initial position for Rotor1>&lt;Initial position for Rotor2>&lt;Initial position for Rotor3>"\
+    + <code> Enigma enigma = new Enigma(    
+            "&lt;Rotor1> &lt;Rotor2> &lt;Rotor3>",    
+            "&lt;Ring position for Rotor1>&lt;Ring position for Rotor2>&lt;Ring position for Rotor3>",    
+            "&lt;Initial position for Rotor1>&lt;Initial position for Rotor2>&lt;Initial position for Rotor3>"    
         ); </code>
     + Following is an example: 
         <code>
