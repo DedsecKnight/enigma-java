@@ -31,11 +31,11 @@
 
 ### How to use
 - Create a new Enigma object with the following syntax (the rotors will be ordered from left to right): 
-    + <pre><p>Enigma enigma = new Enigma(<br />
+    + <pre>Enigma enigma = new Enigma(<br />
             "&lt;Rotor1> &lt;Rotor2> &lt;Rotor3>",<br />
             "&lt;Ring position for Rotor1>&lt;Ring position for Rotor2>&lt;Ring position for Rotor3>",<br />
             "&lt;Initial position for Rotor1>&lt;Initial position for Rotor2>&lt;Initial position for Rotor3>"<br /> 
-        );</p></pre>
+        );</pre>
     + Following is an example: 
         <code>
             Enigma enigma = new Enigma("I II III", "ABC", "DEF");
@@ -45,8 +45,8 @@
         - The middle rotor will be rotor II with ring position of B and initial position of E
         - The rightmost rotor will be rotor III with ring position of C and initial position of F
     + To configure the plugboard, do the following: 
-        + <code> enigma.configuration("&lt;Plugboard configuration goes here>") </code>
-        + Here is an example configuration: DN GR IS
+        + <code> enigma.configurePlugboard("&lt;Plugboard configuration goes here>") </code>
+        + Here is an example configuration: <code>enigma.configurePlugboard("DN GR IS");</code>
             + D will be mapped to N before and after conversion and vice versa
             + G will be mapped to R before and after conversion and vice versa
             + I will be mapped to S before and after conversion and vice versa
