@@ -217,4 +217,24 @@ public class AppTest {
         }
         fail("No error is thrown");
     }
+
+    @Test
+    public void changeToUKWC() {
+        Enigma e = new Enigma("I II III", "AAA", "AAA");
+        e.setReflector("UKW-C");
+        assertEquals("DKCPIHIG", e.convertMessage("TESTUKWC"));
+    }
+
+    @Test(expected = InvalidConfigurationException.class)
+    public void invalidUKW() {
+        try {
+            Enigma e = new Enigma("I II III", "AAA", "AAA");
+            e.setReflector("UKW-D");
+        } catch (InvalidConfigurationException e) {
+            assertEquals("Invalid reflector found", e.getMessage());
+            throw e;
+        }
+        fail("No error is thrown");
+    }
+    
 }
