@@ -13,61 +13,12 @@ public class Enigma {
         rotors = new Rotor[3];
         
         try {
-            String[] rotorNames = rotorConfiguration.split(" ", 0);
-            
-            if (rotorNames.length != 3) 
-                throw new InvalidConfigurationException(
-                    String.format(
-                        "Invalid number of rotors (expected 3, but %d found)",
-                        rotorNames.length
-                    )
-                );
-
-            if (ringPosition.length() != 3) 
-                throw new InvalidConfigurationException(
-                    String.format(
-                        "Invalid length for ring position configuration (expected 3, but %d found)",
-                        ringPosition.length()
-                    )
-                );
-        
-            if (initialPosition.length() != 3) 
-                throw new InvalidConfigurationException(
-                    String.format(
-                        "Invalid length for initial position configuration (expected 3, but %d found)",
-                        initialPosition.length()
-                    )
-                );
-            
-            for (int i = 0; i<3; i++) {
-                if (!Character.isLetter(ringPosition.charAt(i))) 
-                    throw new InvalidConfigurationException(
-                        String.format(
-                            "Letter is expected in ring position configuration (\'%c\' found)",
-                            ringPosition.charAt(i)
-                        )
-                    );
-                
-                if (!Character.isLetter(initialPosition.charAt(i))) 
-                    throw new InvalidConfigurationException(
-                        String.format(
-                            "Letter is expected in initial position configuration (\'%c\' found)",
-                            initialPosition.charAt(i)
-                        )
-                    );
-                
-                rotors[i] = new Rotor(
-                    rotorNames[i], 
-                    ringPosition.charAt(i) - 65, 
-                    initialPosition.charAt(i) - 65
-                );
-            }    
+            initializeRotorConfiguration(rotorConfiguration, ringPosition, initialPosition);  
         } catch (InvalidConfigurationException e) {
             throw e;
         }
-        
 
-        reflector = UKW_B;
+        setReflector("UKW-B");
         plugBoard = new char[26];
 
         for (int i = 0; i<26; i++) {
@@ -109,6 +60,58 @@ public class Enigma {
         }
 
         return plugBoard[(int) currentCharacter-65];
+    }
+
+    public void initializeRotorConfiguration(String rotorConfiguration, String ringPosition, String initialPosition) throws InvalidConfigurationException {
+        String[] rotorNames = rotorConfiguration.split(" ", 0);
+            
+        if (rotorNames.length != 3) 
+            throw new InvalidConfigurationException(
+                String.format(
+                    "Invalid number of rotors (expected 3, but %d found)",
+                    rotorNames.length
+                )
+            );
+
+        if (ringPosition.length() != 3) 
+            throw new InvalidConfigurationException(
+                String.format(
+                    "Invalid length for ring position configuration (expected 3, but %d found)",
+                    ringPosition.length()
+                )
+            );
+    
+        if (initialPosition.length() != 3) 
+            throw new InvalidConfigurationException(
+                String.format(
+                    "Invalid length for initial position configuration (expected 3, but %d found)",
+                    initialPosition.length()
+                )
+            );
+        
+        for (int i = 0; i<3; i++) {
+            if (!Character.isLetter(ringPosition.charAt(i))) 
+                throw new InvalidConfigurationException(
+                    String.format(
+                        "Letter is expected in ring position configuration (\'%c\' found)",
+                        ringPosition.charAt(i)
+                    )
+                );
+            
+            if (!Character.isLetter(initialPosition.charAt(i))) 
+                throw new InvalidConfigurationException(
+                    String.format(
+                        "Letter is expected in initial position configuration (\'%c\' found)",
+                        initialPosition.charAt(i)
+                    )
+                );
+            
+            rotors[i] = new Rotor(
+                rotorNames[i], 
+                ringPosition.charAt(i) - 65, 
+                initialPosition.charAt(i) - 65
+            );
+        }
     }
 
     public void setReflector(String newReflector) throws InvalidConfigurationException {
