@@ -14,7 +14,7 @@
     + UKW-A
     + UKW-B
     + UKW-C
-- Refer to [How to use](how-to-use) for more details
+- Refer to [How to use](#how-to-use) for more details
 
 ### Components
 - Rotors: 
