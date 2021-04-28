@@ -8,6 +8,14 @@
     + Building small-sized application with Java
 - Explore how the Enigma machine encrypts and decrypts a message
 
+### Update
+- Reflector can now be changed
+- Available reflectors to use:
+    + UKW-A
+    + UKW-B
+    + UKW-C
+- Refer to [How to use](how-to-use) for more details
+
 ### Components
 - Rotors: 
     + There are currently 5 rotors to choose from: 
@@ -44,9 +52,13 @@
         - The leftmost rotor will be rotor I with ring position of A and initial position of D
         - The middle rotor will be rotor II with ring position of B and initial position of E
         - The rightmost rotor will be rotor III with ring position of C and initial position of F
+        - The reflector will be UKW-B
     + To configure the plugboard, do the following: 
         + <code> enigma.configurePlugboard("&lt;Plugboard configuration goes here>") </code>
         + Here is an example configuration: <code>enigma.configurePlugboard("DN GR IS");</code>
             + D will be mapped to N before and after conversion and vice versa
             + G will be mapped to R before and after conversion and vice versa
             + I will be mapped to S before and after conversion and vice versa
+    + To change reflector, do the following: 
+        + <code>enigma.setReflector(""&lt;ReflectorName>")</code>
+        + e.g: To switch to UKW-A, use <code>enigma.setReflector("UKW-A"); </code>
