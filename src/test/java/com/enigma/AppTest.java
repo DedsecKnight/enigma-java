@@ -217,4 +217,11 @@ public class AppTest {
         }
         fail("No error is thrown");
     }
+
+    @Test
+    public void changeToUKWC() {
+        Enigma e = new Enigma("I II III", "AAA", "AAA");
+        e.setReflector("UKW-C");
+        assertEquals("DKCPIHIG", e.convertMessage("TESTUKWC"));
+    }
 }

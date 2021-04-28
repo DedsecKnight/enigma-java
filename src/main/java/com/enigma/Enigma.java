@@ -111,6 +111,13 @@ public class Enigma {
         return plugBoard[(int) currentCharacter-65];
     }
 
+    public void setReflector(String newReflector) throws InvalidConfigurationException {
+        if (newReflector.equals("UKW-A")) reflector = UKW_A;
+        else if (newReflector.equals("UKW-B")) reflector = UKW_B;
+        else if (newReflector.equals("UKW-C")) reflector = UKW_C;
+        else throw new InvalidConfigurationException("Invalid reflector found");
+    }
+
     public String convertMessage(String input) {
         input = input.toUpperCase();
         StringBuilder str = new StringBuilder();
