@@ -12,6 +12,10 @@ public class Rotor {
     String characterConfiguration;
 
     public Rotor(String rotorName, int ringPosition, int initialPosition) {
+        configure(rotorName, ringPosition, initialPosition);
+    }
+
+    public void configure(String rotorName, int ringPosition, int initialPosition) {
         try {
             Scanner sc = new Scanner(
                 new File(
@@ -39,7 +43,6 @@ public class Rotor {
                 )
             );
         }
-
     }
 
     private String configureRingPosition(String configuration, int ringPosition) {

@@ -236,5 +236,13 @@ public class AppTest {
         }
         fail("No error is thrown");
     }
+
+    @Test
+    public void changeRotorConfiguration() {
+        Enigma e = new Enigma("I II III", "AAA", "AAA");
+        assertEquals("HQGFDWURWOM", e.convertMessage("INITIALTEST"));
+        e.configureRotor(0, "IV", 'A', 'C');
+        assertEquals("WQRGCNNCX", e.convertMessage("FINALTEST"));
+    }
     
 }

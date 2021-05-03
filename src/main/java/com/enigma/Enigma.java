@@ -1,5 +1,6 @@
 package com.enigma;
 
+
 public class Enigma {
     Rotor[] rotors;
     String reflector;
@@ -9,14 +10,10 @@ public class Enigma {
     static final String UKW_B = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
     static final String UKW_C = "FVPJIAOYEDRZXWGCTKUQSBNMHL";
 
-    public Enigma(String rotorConfiguration, String ringPosition, String initialPosition) {
+    public Enigma(String rotorConfiguration, String ringPosition, String initialPosition) throws InvalidConfigurationException {
         rotors = new Rotor[3];
         
-        try {
-            initializeRotorConfiguration(rotorConfiguration, ringPosition, initialPosition);  
-        } catch (InvalidConfigurationException e) {
-            throw e;
-        }
+        initializeRotorConfiguration(rotorConfiguration, ringPosition, initialPosition);  
 
         setReflector("UKW-B");
         plugBoard = new char[26];
@@ -62,7 +59,7 @@ public class Enigma {
         return plugBoard[(int) currentCharacter-65];
     }
 
-    public void initializeRotorConfiguration(String rotorConfiguration, String ringPosition, String initialPosition) throws InvalidConfigurationException {
+    private void initializeRotorConfiguration(String rotorConfiguration, String ringPosition, String initialPosition) {
         String[] rotorNames = rotorConfiguration.split(" ", 0);
             
         if (rotorNames.length != 3) 
@@ -114,6 +111,10 @@ public class Enigma {
         }
     }
 
+    public void configureRotor(int rotorIndex, String rotorName, char ringPosition, char initialPosition) {
+        rotors[rotorIndex].configure(rotorName, ringPosition - 65, initialPosition - 65);
+    }
+
     public void setReflector(String newReflector) throws InvalidConfigurationException {
         if (newReflector.equals("UKW-A")) reflector = UKW_A;
         else if (newReflector.equals("UKW-B")) reflector = UKW_B;
@@ -133,30 +134,25 @@ public class Enigma {
         return str.toString();
     }
 
-    public void configurePlugboard(String configuration) {
+    public void configurePlugboard(String configuration) throws InvalidConfigurationException {
         String[] plugBoardPair = configuration.split(" ", 0);
-        try {
-            for (String pair : plugBoardPair) {
-                char firstCharacter = pair.charAt(0);
-                char secondCharacter = pair.charAt(1);
-                
-                if (plugBoard[(int) firstCharacter-65] != firstCharacter) 
-                    throw new InvalidConfigurationException(
-                        "Plugboard for first character is already used"
-                    );
+        for (String pair : plugBoardPair) {
+            char firstCharacter = pair.charAt(0);
+            char secondCharacter = pair.charAt(1);
+            
+            if (plugBoard[(int) firstCharacter-65] != firstCharacter) 
+                throw new InvalidConfigurationException(
+                    "Plugboard for first character is already used"
+                );
 
-                if (plugBoard[(int) secondCharacter-65] != secondCharacter)
-                    throw new InvalidConfigurationException(
-                        "Plugboard for second character is already used"
-                    );
-                
-                plugBoard[(int) firstCharacter-65] = secondCharacter;
-                plugBoard[(int) secondCharacter-65] = firstCharacter;
-                
-            }    
-        } 
-        catch (InvalidConfigurationException e) {
-            throw e;
-        }
+            if (plugBoard[(int) secondCharacter-65] != secondCharacter)
+                throw new InvalidConfigurationException(
+                    "Plugboard for second character is already used"
+                );
+            
+            plugBoard[(int) firstCharacter-65] = secondCharacter;
+            plugBoard[(int) secondCharacter-65] = firstCharacter;
+            
+        }  
     }
 }
