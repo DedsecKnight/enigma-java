@@ -9,11 +9,7 @@
 - Explore how the Enigma machine encrypts and decrypts a message
 
 ### Update
-- Reflector can now be changed
-- Available reflectors to use:
-    + UKW-A
-    + UKW-B
-    + UKW-C
+- It is now possible to change configuration of any rotor
 - Refer to [How to use](#how-to-use) for more details
 
 ### Components
@@ -62,3 +58,8 @@
     + To change reflector, do the following: 
         + <code>enigma.setReflector(""&lt;ReflectorName>")</code>
         + e.g: To switch to UKW-A, use <code>enigma.setReflector("UKW-A"); </code>
+    + To change rotor configuration, do the following (rotors will be 0-indexed from left to right): 
+        + <code>enigma.configureRotor(&lt;Rotor Index>, &lt;Rotor Name>, &lt;Ring Position>, &lt;Initial Position>)</code>
+        + e.g: To reconfigure the leftmost rotor to rotor IV with ring position A and initial position C, use: 
+            + <code>enigma.configureRotor(0, "IV", 'A', 'C')</code>
+            + Notice that the ring position and the initial position is passed in as char
